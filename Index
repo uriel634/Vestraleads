@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VESTRA — Recursos Gratuitos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+–negro: #0A0A0A;
+–azul: #0057FF;
+–azul-suave: #0a1428;
+–azul-borde: #0d2150;
+–blanco: #FFFFFF;
+–gris: #888888;
+–superficie: #111111;
+–borde: #1e1e1e;
+–verde: #00875A;
+–verde-bg: #051a12;
+–naranja: #B86800;
+}
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–negro);
+color: var(–blanco);
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0 20px 80px;
+}
+
+.franja-top { width: 100%; height: 5px; background: var(–azul); margin-bottom: 40px; }
+.container { width: 100%; max-width: 600px; }
+
+/* HEADER */
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 48px;
+}
+
+.logo { display: flex; align-items: baseline; gap: 8px; }
+.logo-uv { font-family: ‘Syne’, sans-serif; font-size: 28px; font-weight: 800; color: var(–azul); }
+.logo-nombre { font-size: 11px; color: var(–gris); letter-spacing: 2px; text-transform: uppercase; }
+.logo-badge { font-family: ‘DM Mono’, monospace; font-size: 10px; color: var(–azul); border: 1px solid var(–azul); padding: 4px 10px; letter-spacing: 1px; text-transform: uppercase; }
+
+/* HERO */
+.hero {
+text-align: center;
+margin-bottom: 40px;
+}
+
+.hero-tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–azul);
+letter-spacing: 3px;
+text-transform: uppercase;
+margin-bottom: 16px;
+}
+
+.hero h1 {
+font-family: ‘Syne’, sans-serif;
+font-size: clamp(26px, 6vw, 40px);
+font-weight: 800;
+line-height: 1.1;
+margin-bottom: 14px;
+}
+
+.hero h1 span { color: var(–azul); }
+
+.hero-sub {
+font-size: 14px;
+color: var(–gris);
+line-height: 1.7;
+font-weight: 300;
+max-width: 440px;
+margin: 0 auto 24px;
+}
+
+.hero-sub strong { color: var(–blanco); font-weight: 500; }
+
+.hero-divider {
+width: 40px;
+height: 3px;
+background: var(–azul);
+margin: 0 auto;
+}
+
+/* INSTRUCCIÓN */
+.instruccion {
+background: var(–azul-suave);
+border: 1px solid var(–azul-borde);
+border-left: 4px solid var(–azul);
+padding: 14px 20px;
+margin-bottom: 24px;
+display: flex;
+align-items: flex-start;
+gap: 12px;
+}
+
+.instruccion p {
+font-size: 13px;
+color: #aac0ff;
+line-height: 1.6;
+font-weight: 300;
+}
+
+.instruccion p strong { color: var(–blanco); font-weight: 600; }
+
+/* CARDS */
+.cards {
+display: flex;
+flex-direction: column;
+gap: 3px;
+margin-bottom: 32px;
+}
+
+.card {
+background: var(–superficie);
+border: 1px solid var(–borde);
+border-left: 4px solid transparent;
+padding: 24px 24px 20px;
+text-decoration: none;
+color: inherit;
+display: flex;
+flex-direction: column;
+gap: 0;
+transition: all 0.2s ease;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+}
+
+.card::after {
+content: ‘→’;
+position: absolute;
+right: 24px;
+top: 50%;
+transform: translateY(-50%) translateX(4px);
+font-size: 20px;
+color: var(–azul);
+opacity: 0;
+transition: all 0.2s;
+}
+
+.card:hover {
+background: #131313;
+border-left-color: var(–azul);
+padding-right: 48px;
+}
+
+.card:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
+
+.card-top {
+display: flex;
+align-items: center;
+gap: 14px;
+margin-bottom: 14px;
+}
+
+.card-emoji {
+font-size: 32px;
+flex-shrink: 0;
+}
+
+.card-meta {
+display: flex;
+flex-direction: column;
+gap: 3px;
+}
+
+.card-tipo {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+letter-spacing: 2px;
+text-transform: uppercase;
+font-weight: 500;
+}
+
+.card-tiempo {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 1px;
+}
+
+.card-titulo {
+font-family: ‘Syne’, sans-serif;
+font-size: 18px;
+font-weight: 800;
+color: var(–blanco);
+line-height: 1.2;
+margin-bottom: 10px;
+}
+
+.card-desc {
+font-size: 13px;
+color: var(–gris);
+line-height: 1.65;
+font-weight: 300;
+margin-bottom: 16px;
+}
+
+.card-desc strong { color: #aaaaaa; font-weight: 500; }
+
+.card-tags {
+display: flex;
+gap: 6px;
+flex-wrap: wrap;
+}
+
+.tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+padding: 4px 10px;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+/* CARD 1 — CHECKLIST */
+.card-1 .card-tipo { color: var(–verde); }
+.card-1:hover { border-left-color: var(–verde); }
+.card-1:hover::after { color: var(–verde); }
+.tag-verde { background: var(–verde-bg); color: var(–verde); border: 1px solid #0a2e1a; }
+
+/* CARD 2 — GUÍA */
+.card-2 .card-tipo { color: var(–naranja); }
+.card-2:hover { border-left-color: var(–naranja); }
+.card-2:hover::after { color: var(–naranja); }
+.tag-naranja { background: #1a1000; color: var(–naranja); border: 1px solid #2a1a00; }
+.tag-azul { background: var(–azul-suave); color: var(–azul); border: 1px solid var(–azul-borde); }
+
+/* SEPARADOR */
+.sep-texto {
+text-align: center;
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: #333;
+letter-spacing: 3px;
+text-transform: uppercase;
+margin: 4px 0;
+padding: 8px 0;
+position: relative;
+}
+
+/* PERFIL */
+.perfil {
+background: var(–superficie);
+border: 1px solid var(–borde);
+border-top: 4px solid var(–azul);
+padding: 24px;
+margin-bottom: 3px;
+}
+
+.perfil-inner {
+display: flex;
+gap: 16px;
+align-items: flex-start;
+}
+
+.perfil-avatar {
+width: 52px;
+height: 52px;
+background: var(–azul);
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Syne’, sans-serif;
+font-size: 18px;
+font-weight: 800;
+color: var(–blanco);
+flex-shrink: 0;
+}
+
+.perfil-info strong {
+display: block;
+font-family: ‘Syne’, sans-serif;
+font-size: 15px;
+font-weight: 800;
+color: var(–blanco);
+margin-bottom: 3px;
+}
+
+.perfil-info .cargo {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–azul);
+letter-spacing: 1px;
+text-transform: uppercase;
+margin-bottom: 10px;
+}
+
+.perfil-info p {
+font-size: 13px;
+color: var(–gris);
+line-height: 1.65;
+font-weight: 300;
+}
+
+.perfil-info p strong { color: var(–blanco); font-weight: 500; }
+
+/* REDES */
+.redes {
+display: flex;
+gap: 3px;
+margin-top: 16px;
+}
+
+.red-btn {
+flex: 1;
+background: #0d0d0d;
+border: 1px solid var(–borde);
+padding: 10px;
+text-align: center;
+text-decoration: none;
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 1px;
+text-transform: uppercase;
+transition: all 0.2s;
+}
+
+.red-btn:hover { border-color: var(–azul); color: var(–azul); }
+
+/* PROMESA */
+.promesa {
+background: var(–azul);
+padding: 20px 24px;
+text-align: center;
+}
+
+.promesa p {
+font-family: ‘Syne’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+color: var(–blanco);
+line-height: 1.5;
+font-style: italic;
+}
+
+/* FOOTER */
+.footer { margin-top: 40px; text-align: center; }
+.footer p { font-family: ‘DM Mono’, monospace; font-size: 10px; color: #222; letter-spacing: 2px; text-transform: uppercase; line-height: 1.8; }
+.footer a { color: var(–azul); text-decoration: none; }
+.footer span { color: var(–azul); }
+</style>
+
+</head>
+<body>
+
+<div class="franja-top"></div>
+
+<div class="container">
+
+  <!-- HEADER -->
+
+  <div class="header">
+    <div class="logo">
+      <span class="logo-uv">UV</span>
+      <span class="logo-nombre">Uriel Vargas</span>
+    </div>
+    <div class="logo-badge">VESTRA</div>
+  </div>
+
+  <!-- HERO -->
+
+  <div class="hero">
+    <div class="hero-tag">Recursos Gratuitos</div>
+    <h1>Controla tus ventas.<br><span>Deja de improvisar.</span></h1>
+    <p class="hero-sub">
+      Dos herramientas gratuitas para dueños de negocio que quieren resultados consistentes — <strong>no accidentales.</strong>
+    </p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <!-- INSTRUCCIÓN -->
+
+  <div class="instruccion">
+    <p>👇 <strong>Elige por dónde empezar.</strong> Ambas herramientas son gratuitas, toman menos de 3 minutos y al final te dicen exactamente qué sigue.</p>
+  </div>
+
+  <!-- CARDS -->
+
+  <div class="cards">
+
+```
+<!-- CARD 1 — CHECKLIST -->
+<a class="card card-1" href="checklist.html">
+  <div class="card-top">
+    <span class="card-emoji">🎯</span>
+    <div class="card-meta">
+      <span class="card-tipo">Diagnostico interactivo</span>
+      <span class="card-tiempo">⏱ 2 minutos</span>
+    </div>
+  </div>
+  <div class="card-titulo">¿Tu negocio tiene estructura comercial o solo buena suerte?</div>
+  <div class="card-desc">
+    Marca las 10 señales que reconoces en tu negocio. Al final te dice <strong>en qué nivel estás y qué hacer primero.</strong>
+  </div>
+  <div class="card-tags">
+    <span class="tag tag-verde">Interactivo</span>
+    <span class="tag tag-verde">Resultado inmediato</span>
+    <span class="tag tag-verde">Recomendado para empezar</span>
+  </div>
+</a>
+
+<div class="sep-texto">— o —</div>
+
+<!-- CARD 2 — GUÍA -->
+<a class="card card-2" href="errores.html">
+  <div class="card-top">
+    <span class="card-emoji">📖</span>
+    <div class="card-meta">
+      <span class="card-tipo">Mini guia gratuita</span>
+      <span class="card-tiempo">⏱ 3 minutos de lectura</span>
+    </div>
+  </div>
+  <div class="card-titulo">Los 3 errores que hacen que tus ventas sean un accidente</div>
+  <div class="card-desc">
+    No es falta de esfuerzo ni mala suerte. <strong>Es esto.</strong> Una guía directa con los errores más comunes — y el primer paso concreto para cada uno.
+  </div>
+  <div class="card-tags">
+    <span class="tag tag-naranja">Guia de lectura</span>
+    <span class="tag tag-azul">Con pasos accionables</span>
+  </div>
+</a>
+```
+
+  </div>
+
+  <!-- PERFIL -->
+
+  <div class="perfil">
+    <div class="perfil-inner">
+      <div class="perfil-avatar">UV</div>
+      <div class="perfil-info">
+        <strong>Uriel Vargas</strong>
+        <div class="cargo">Consultor Comercial · VESTRA</div>
+        <p>Ayudo a dueños de negocio y profesionales independientes a construir <strong>estructura comercial</strong> para que sus resultados sean consistentes — no un accidente.</p>
+      </div>
+    </div>
+    <div class="redes">
+      <a class="red-btn" href="https://instagram.com/uriel_vestra" target="_blank">Instagram</a>
+      <a class="red-btn" href="https://wa.me/525520654337" target="_blank">WhatsApp</a>
+      <a class="red-btn" href="https://urieelis.gumroad.com" target="_blank">Gumroad</a>
+    </div>
+  </div>
+
+  <!-- PROMESA -->
+
+  <div class="promesa">
+    <p>"Controla tus ventas para que los resultados nunca más sean un accidente."</p>
+  </div>
+
+  <!-- FOOTER -->
+
+  <div class="footer">
+    <p>
+      © 2025 <span>VESTRA</span> · Uriel Vargas<br>
+      <a href="https://instagram.com/uriel_vestra" target="_blank">@uriel_vestra</a> · <a href="https://wa.me/525520654337" target="_blank">WhatsApp</a>
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>
