@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist Comercial — VESTRA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+–negro: #0A0A0A;
+–azul: #0057FF;
+–azul-suave: #0a1428;
+–azul-borde: #0d2150;
+–blanco: #FFFFFF;
+–gris: #888888;
+–gris-claro: #F2F2F2;
+–superficie: #111111;
+–borde: #1e1e1e;
+–verde: #00875A;
+–verde-bg: #051a12;
+–naranja: #B86800;
+–naranja-bg: #1a1000;
+–rojo: #C8392B;
+–rojo-bg: #1a0804;
+}
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–negro);
+color: var(–blanco);
+font-family: ‘DM Sans’, sans-serif;
+min-height: 100vh;
+padding: 0 20px 80px;
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
+/* BARRA TOP */
+.barra-top {
+width: 100%;
+background: var(–azul);
+padding: 10px 20px;
+text-align: center;
+margin-bottom: 0;
+}
+
+.barra-top p {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+color: rgba(255,255,255,0.9);
+letter-spacing: 1px;
+}
+
+.barra-top span { color: #FFD700; font-weight: 500; }
+
+.container {
+width: 100%;
+max-width: 620px;
+padding-top: 36px;
+}
+
+/* HEADER */
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 40px;
+}
+
+.logo { display: flex; align-items: baseline; gap: 8px; }
+
+.logo-uv {
+font-family: ‘Syne’, sans-serif;
+font-size: 26px;
+font-weight: 800;
+color: var(–azul);
+letter-spacing: -1px;
+}
+
+.logo-nombre {
+font-size: 11px;
+color: var(–gris);
+letter-spacing: 2px;
+text-transform: uppercase;
+}
+
+.logo-badge {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–azul);
+border: 1px solid var(–azul);
+padding: 4px 10px;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+/* INTRO CARD */
+.intro-card {
+background: var(–superficie);
+border: 1px solid var(–borde);
+border-top: 4px solid var(–azul);
+padding: 28px 24px;
+margin-bottom: 12px;
+}
+
+.intro-tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–azul);
+letter-spacing: 3px;
+text-transform: uppercase;
+margin-bottom: 14px;
+}
+
+.intro-card h1 {
+font-family: ‘Syne’, sans-serif;
+font-size: clamp(22px, 5vw, 32px);
+font-weight: 800;
+line-height: 1.15;
+margin-bottom: 12px;
+}
+
+.intro-card h1 span { color: var(–azul); }
+
+.intro-card .subtexto {
+font-size: 14px;
+color: var(–gris);
+line-height: 1.7;
+font-weight: 300;
+margin-bottom: 18px;
+}
+
+.tag-gratis {
+display: inline-flex;
+align-items: center;
+gap: 6px;
+background: var(–azul-suave);
+border: 1px solid var(–azul-borde);
+color: var(–azul);
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+padding: 6px 14px;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+/* INSTRUCCIÓN */
+.instruccion {
+background: var(–azul-suave);
+border: 1px solid var(–azul-borde);
+border-left: 3px solid var(–azul);
+padding: 14px 18px;
+margin-bottom: 12px;
+display: flex;
+align-items: flex-start;
+gap: 12px;
+}
+
+.instruccion .icono { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+.instruccion p {
+font-size: 13px;
+color: #aac0ff;
+line-height: 1.6;
+font-weight: 400;
+}
+
+.instruccion p span { color: var(–blanco); font-weight: 600; }
+
+/* PROGRESO */
+.progreso-card {
+background: var(–superficie);
+border: 1px solid var(–borde);
+padding: 16px 20px;
+margin-bottom: 16px;
+}
+
+.progreso-top {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 10px;
+}
+
+.progreso-top span {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 2px;
+text-transform: uppercase;
+}
+
+.prog-count {
+font-family: ‘DM Mono’, monospace;
+font-size: 13px;
+color: var(–azul) !important;
+font-weight: 500;
+}
+
+.barra-track {
+width: 100%;
+height: 3px;
+background: var(–borde);
+}
+
+.barra-fill {
+height: 100%;
+background: var(–azul);
+transition: width 0.4s ease;
+width: 0%;
+}
+
+/* ITEMS */
+.seccion-titulo {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 3px;
+text-transform: uppercase;
+margin-bottom: 10px;
+padding-left: 2px;
+}
+
+.items-lista {
+display: flex;
+flex-direction: column;
+gap: 3px;
+margin-bottom: 20px;
+}
+
+.item {
+background: var(–superficie);
+border: 1px solid var(–borde);
+border-left: 3px solid transparent;
+padding: 16px 18px;
+display: flex;
+align-items: flex-start;
+gap: 14px;
+cursor: pointer;
+transition: all 0.2s;
+user-select: none;
+-webkit-tap-highlight-color: transparent;
+}
+
+.item:hover { border-left-color: #333; background: #131313; }
+
+.item.marcado {
+border-left-color: var(–azul);
+background: var(–azul-suave);
+}
+
+.item.marcado .check-box {
+background: var(–azul);
+border-color: var(–azul);
+}
+
+.item.marcado .check-box::after {
+opacity: 1;
+transform: rotate(45deg) scale(1);
+}
+
+.item.marcado .item-texto { color: var(–blanco); font-weight: 500; }
+.item.marcado .item-num { color: var(–azul); }
+
+.check-box {
+width: 22px;
+height: 22px;
+border: 1.5px solid #333;
+flex-shrink: 0;
+position: relative;
+transition: all 0.2s;
+margin-top: 1px;
+}
+
+.check-box::after {
+content: ‘’;
+position: absolute;
+left: 5px;
+top: 2px;
+width: 6px;
+height: 10px;
+border-right: 2px solid var(–blanco);
+border-bottom: 2px solid var(–blanco);
+transform: rotate(45deg) scale(0);
+opacity: 0;
+transition: all 0.15s ease;
+}
+
+.item-body { flex: 1; }
+
+.item-num {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: #333;
+letter-spacing: 1.5px;
+text-transform: uppercase;
+margin-bottom: 4px;
+transition: color 0.2s;
+}
+
+.item-texto {
+font-size: 14px;
+color: #aaaaaa;
+line-height: 1.55;
+font-weight: 400;
+transition: all 0.2s;
+}
+
+/* BOTÓN */
+.btn-diagnostico {
+width: 100%;
+background: var(–azul);
+color: var(–blanco);
+border: none;
+padding: 18px;
+font-family: ‘Syne’, sans-serif;
+font-size: 14px;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.2s;
+opacity: 0.3;
+pointer-events: none;
+margin-bottom: 10px;
+}
+
+.btn-diagnostico.activo { opacity: 1; pointer-events: all; }
+.btn-diagnostico.activo:hover { background: #0047d4; }
+
+.btn-nota {
+text-align: center;
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 1px;
+margin-bottom: 32px;
+}
+
+/* RESULTADO */
+.resultado {
+display: none;
+flex-direction: column;
+gap: 3px;
+animation: subir 0.4s ease;
+}
+
+.resultado.visible { display: flex; }
+
+@keyframes subir {
+from { opacity: 0; transform: translateY(20px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+/* PUNTUACIÓN */
+.punt-card {
+padding: 28px 24px;
+border: 1px solid var(–borde);
+text-align: center;
+}
+
+.punt-emoji { font-size: 44px; margin-bottom: 12px; display: block; }
+
+.punt-num {
+font-family: ‘Syne’, sans-serif;
+font-size: clamp(56px, 12vw, 80px);
+font-weight: 800;
+line-height: 1;
+margin-bottom: 4px;
+}
+
+.punt-de {
+font-size: 13px;
+color: var(–gris);
+margin-bottom: 14px;
+font-weight: 300;
+}
+
+.punt-badge {
+display: inline-block;
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+padding: 6px 18px;
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+
+.nivel-verde { background: var(–verde-bg); border-top: 4px solid var(–verde); }
+.nivel-verde .punt-num { color: var(–verde); }
+.nivel-verde .punt-badge { background: var(–verde-bg); color: var(–verde); border: 1px solid var(–verde); }
+
+.nivel-naranja { background: var(–naranja-bg); border-top: 4px solid var(–naranja); }
+.nivel-naranja .punt-num { color: var(–naranja); }
+.nivel-naranja .punt-badge { background: var(–naranja-bg); color: var(–naranja); border: 1px solid var(–naranja); }
+
+.nivel-rojo { background: var(–rojo-bg); border-top: 4px solid var(–rojo); }
+.nivel-rojo .punt-num { color: var(–rojo); }
+.nivel-rojo .punt-badge { background: var(–rojo-bg); color: var(–rojo); border: 1px solid var(–rojo); }
+
+/* MENSAJE PERSONAL */
+.mensaje-card {
+background: var(–superficie);
+border: 1px solid var(–borde);
+border-left: 4px solid var(–azul);
+padding: 22px 24px;
+}
+
+.mensaje-header {
+display: flex;
+align-items: center;
+gap: 12px;
+margin-bottom: 16px;
+}
+
+.msg-avatar {
+width: 40px;
+height: 40px;
+background: var(–azul);
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Syne’, sans-serif;
+font-size: 13px;
+font-weight: 800;
+color: var(–blanco);
+flex-shrink: 0;
+}
+
+.msg-autor strong {
+display: block;
+font-family: ‘Syne’, sans-serif;
+font-size: 13px;
+font-weight: 700;
+color: var(–blanco);
+}
+
+.msg-autor span {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 1px;
+}
+
+.mensaje-texto {
+font-size: 14px;
+color: #cccccc;
+line-height: 1.8;
+font-weight: 300;
+}
+
+.mensaje-texto strong { color: var(–blanco); font-weight: 600; }
+.mensaje-texto em { color: var(–azul); font-style: normal; font-weight: 600; }
+
+/* LO QUE MARCASTE */
+.marcadas-card {
+background: var(–superficie);
+border: 1px solid var(–borde);
+padding: 22px 24px;
+}
+
+.marcadas-titulo {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 3px;
+text-transform: uppercase;
+margin-bottom: 14px;
+}
+
+.marcadas-lista { display: flex; flex-direction: column; gap: 8px; }
+
+.marcada-item {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+background: var(–azul-suave);
+border: 1px solid var(–azul-borde);
+padding: 10px 14px;
+}
+
+.marcada-dot {
+width: 6px;
+height: 6px;
+background: var(–azul);
+border-radius: 50%;
+flex-shrink: 0;
+margin-top: 5px;
+}
+
+.marcada-texto {
+font-size: 13px;
+color: #aac0ff;
+line-height: 1.5;
+font-weight: 400;
+}
+
+/* PASOS */
+.pasos-card {
+background: var(–superficie);
+border: 1px solid var(–borde);
+padding: 22px 24px;
+}
+
+.pasos-titulo {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: var(–gris);
+letter-spacing: 3px;
+text-transform: uppercase;
+margin-bottom: 18px;
+}
+
+.paso-item {
+display: flex;
+gap: 14px;
+margin-bottom: 16px;
+align-items: flex-start;
+}
+
+.paso-item:last-child { margin-bottom: 0; }
+
+.paso-num {
+width: 28px;
+height: 28px;
+background: var(–azul);
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘Syne’, sans-serif;
+font-size: 13px;
+font-weight: 800;
+color: var(–blanco);
+flex-shrink: 0;
+}
+
+.paso-contenido strong {
+display: block;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 14px;
+font-weight: 600;
+color: var(–blanco);
+margin-bottom: 2px;
+}
+
+.paso-contenido span {
+font-size: 13px;
+color: var(–gris);
+line-height: 1.5;
+font-weight: 300;
+}
+
+/* CTA */
+.cta-card {
+background: var(–azul);
+padding: 30px 24px;
+text-align: center;
+}
+
+.cta-emoji { font-size: 36px; margin-bottom: 12px; display: block; }
+
+.cta-titulo {
+font-family: ‘Syne’, sans-serif;
+font-size: 20px;
+font-weight: 800;
+color: var(–blanco);
+line-height: 1.25;
+margin-bottom: 8px;
+white-space: pre-line;
+}
+
+.cta-sub {
+font-size: 13px;
+color: rgba(255,255,255,0.7);
+line-height: 1.65;
+margin-bottom: 20px;
+font-weight: 300;
+}
+
+.cta-beneficios {
+display: flex;
+flex-direction: column;
+gap: 6px;
+margin-bottom: 22px;
+text-align: left;
+}
+
+.cta-beneficio {
+font-size: 13px;
+color: rgba(255,255,255,0.85);
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.cta-btn {
+display: block;
+width: 100%;
+background: var(–blanco);
+color: var(–azul);
+padding: 16px;
+font-family: ‘Syne’, sans-serif;
+font-size: 14px;
+font-weight: 800;
+letter-spacing: 1px;
+text-transform: uppercase;
+text-decoration: none;
+border: none;
+cursor: pointer;
+margin-bottom: 10px;
+transition: opacity 0.2s;
+}
+
+.cta-btn:hover { opacity: 0.9; }
+
+.cta-nota {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: rgba(255,255,255,0.4);
+letter-spacing: 1px;
+}
+
+/* REINICIAR */
+.btn-reiniciar {
+width: 100%;
+background: none;
+border: 1px solid var(–borde);
+color: var(–gris);
+padding: 14px;
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+letter-spacing: 2px;
+text-transform: uppercase;
+cursor: pointer;
+transition: all 0.2s;
+}
+
+.btn-reiniciar:hover { border-color: #444; color: var(–blanco); }
+
+/* FOOTER */
+.footer {
+margin-top: 48px;
+text-align: center;
+}
+
+.footer p {
+font-family: ‘DM Mono’, monospace;
+font-size: 10px;
+color: #222;
+letter-spacing: 2px;
+text-transform: uppercase;
+line-height: 1.8;
+}
+
+.footer a { color: var(–azul); text-decoration: none; }
+.footer span { color: var(–azul); }
+</style>
+
+</head>
+<body>
+
+<!-- BARRA TOP -->
+
+<div class="barra-top">
+  <p>🎁 Recurso gratuito de <span>Uriel Vargas · VESTRA</span> — Compártelo si te fue útil</p>
+</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+
+  <div class="header">
+    <div class="logo">
+      <span class="logo-uv">UV</span>
+      <span class="logo-nombre">Uriel Vargas</span>
+    </div>
+    <div class="logo-badge">VESTRA</div>
+  </div>
+
+  <!-- INTRO -->
+
+  <div class="intro-card">
+    <div class="intro-tag">Diagnostico Comercial Gratuito</div>
+    <h1>¿Tu negocio tiene estructura comercial<br>o solo <span>buena suerte?</span></h1>
+    <p class="subtexto">
+      Marca las situaciones que reconoces en tu negocio hoy mismo. Sin datos personales, sin trampa. Solo tú y tu realidad. 👇
+    </p>
+    <div class="tag-gratis">✨ 100% gratuito · Solo toma 2 minutos</div>
+  </div>
+
+  <!-- INSTRUCCIÓN -->
+
+  <div class="instruccion">
+    <span class="icono">💡</span>
+    <p>Marca <span>todas las que apliquen</span> a tu negocio. Mientras más honesto seas, más útil será tu diagnóstico al final.</p>
+  </div>
+
+  <!-- PROGRESO -->
+
+  <div class="progreso-card">
+    <div class="progreso-top">
+      <span>Tu avance</span>
+      <span class="prog-count" id="prog-count">0 de 10 marcadas</span>
+    </div>
+    <div class="barra-track">
+      <div class="barra-fill" id="prog-fill"></div>
+    </div>
+  </div>
+
+  <!-- LISTA -->
+
+  <div class="seccion-titulo">Las 10 señales</div>
+
+  <div class="items-lista">
+
+```
+<div class="item" onclick="toggle(this,0)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 01</div>
+    <div class="item-texto">Hay meses que vendes bien y meses que casi no entra nada — y no sabes exactamente por qué pasa. 📉</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,1)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 02</div>
+    <div class="item-texto">No tienes claro cuántos prospectos necesitas hablar para cerrar una venta. Lo haces "a ojo". 👁️</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,2)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 03</div>
+    <div class="item-texto">Cuando alguien te dice "lo pienso y te aviso", no tienes un proceso claro de qué hacer después. 🤷</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,3)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 04</div>
+    <div class="item-texto">Tu mejor mes de ventas fue por un contacto, una recomendación o una situación que no puedes repetir. 🍀</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,4)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 05</div>
+    <div class="item-texto">No tienes una rutina fija de ventas. Haces acciones comerciales solo cuando "hay tiempo". ⏰</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,5)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 06</div>
+    <div class="item-texto">La mayoría de tus clientes llegaron solos por recomendación — tú no los fuiste a buscar de forma activa. 🗣️</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,6)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 07</div>
+    <div class="item-texto">Trabajas mucho, pero al cerrar el mes los números no reflejan todo ese esfuerzo. 😤</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,7)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 08</div>
+    <div class="item-texto">No puedes decir con certeza cuánto vas a vender el próximo mes. Es una sorpresa cada vez. 🎲</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,8)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 09</div>
+    <div class="item-texto">Tienes prospectos que se "enfriaron" y no sabes cómo retomar sin quedar mal. 🥶</div>
+  </div>
+</div>
+
+<div class="item" onclick="toggle(this,9)">
+  <div class="check-box"></div>
+  <div class="item-body">
+    <div class="item-num">Señal 10</div>
+    <div class="item-texto">Si dejas de buscar clientes activamente esta semana, las ventas del mes que viene están en riesgo. 🚨</div>
+  </div>
+</div>
+```
+
+  </div>
+
+  <!-- BOTÓN -->
+
+<button class="btn-diagnostico" id="btn-diag" onclick="verResultado()">🔍 Ver mi diagnóstico</button>
+
+  <p class="btn-nota">Marca al menos una señal para activar tu diagnóstico</p>
+
+  <!-- RESULTADO -->
+
+  <div class="resultado" id="resultado">
+
+```
+<div class="punt-card" id="punt-card">
+  <span class="punt-emoji" id="punt-emoji">—</span>
+  <div class="punt-num" id="punt-num">0</div>
+  <div class="punt-de">señales identificadas de 10</div>
+  <div class="punt-badge" id="punt-badge">—</div>
+</div>
+
+<div class="mensaje-card">
+  <div class="mensaje-header">
+    <div class="msg-avatar">UV</div>
+    <div class="msg-autor">
+      <strong>Uriel Vargas</strong>
+      <span>Consultor Comercial · VESTRA</span>
+    </div>
+  </div>
+  <div class="mensaje-texto" id="msg-texto"></div>
+</div>
+
+<div class="marcadas-card">
+  <div class="marcadas-titulo">Lo que identificaste en tu negocio</div>
+  <div class="marcadas-lista" id="marcadas-lista"></div>
+</div>
+
+<div class="pasos-card">
+  <div class="pasos-titulo">¿Que sigue ahora?</div>
+  <div class="paso-item">
+    <div class="paso-num">1</div>
+    <div class="paso-contenido">
+      <strong>Guarda este diagnóstico 📸</strong>
+      <span>Toma captura de pantalla. Es tu punto de partida real para empezar a estructurar.</span>
+    </div>
+  </div>
+  <div class="paso-item">
+    <div class="paso-num">2</div>
+    <div class="paso-contenido">
+      <strong>Compártelo con alguien 🤝</strong>
+      <span>Un colega, socio o alguien que también necesite estructura. Mándales el link.</span>
+    </div>
+  </div>
+  <div class="paso-item">
+    <div class="paso-num">3</div>
+    <div class="paso-contenido">
+      <strong>Da el siguiente paso 🚀</strong>
+      <span>Las señales que marcaste tienen solución concreta. Escríbeme y te explico cómo en menos de 5 minutos.</span>
+    </div>
+  </div>
+</div>
+
+<div class="cta-card">
+  <span class="cta-emoji">⚡</span>
+  <div class="cta-titulo" id="cta-titulo">¿Listo para que esto\ncambie de una vez?</div>
+  <div class="cta-sub" id="cta-sub"></div>
+  <div class="cta-beneficios">
+    <div class="cta-beneficio">✅ Sin dejar tu negocio ni un solo día</div>
+    <div class="cta-beneficio">✅ Sin publicidad pagada</div>
+    <div class="cta-beneficio">✅ Con herramientas que usas desde hoy</div>
+  </div>
+  <a class="cta-btn" id="cta-link" href="#" target="_blank">💬 Escribirle a Uriel por WhatsApp</a>
+  <div class="cta-nota">Sin compromiso · Te respondo personalmente</div>
+</div>
+
+<button class="btn-reiniciar" onclick="reiniciar()">← Hacer el checklist de nuevo</button>
+```
+
+  </div>
+
+  <div class="footer">
+    <p>
+      © 2025 <span>VESTRA</span> · Uriel Vargas<br>
+      <a href="https://instagram.com/uriel_vestra" target="_blank">@uriel_vestra</a> · <a href="https://wa.me/525520654337" target="_blank">WhatsApp</a>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  const marcados = new Array(10).fill(false);
+
+  const resumen = [
+    "Ventas irregulares sin explicación clara",
+    "No conoces tu tasa de conversión real",
+    "Sin proceso definido ante objeciones",
+    "Tus mejores meses no los puedes repetir",
+    "No tienes rutina comercial fija",
+    "Dependes 100% del boca a boca",
+    "Mucho esfuerzo, resultados que no reflejan",
+    "No puedes proyectar ventas futuras",
+    "Prospectos fríos sin estrategia de retoma",
+    "Tus ventas dependen de que tú no pares nunca"
+  ];
+
+  function toggle(el, idx) {
+    marcados[idx] = !marcados[idx];
+    el.classList.toggle('marcado', marcados[idx]);
+    actualizar();
+  }
+
+  function actualizar() {
+    const n = marcados.filter(Boolean).length;
+    document.getElementById('prog-count').textContent = n + ' de 10 marcadas';
+    document.getElementById('prog-fill').style.width = (n * 10) + '%';
+    const btn = document.getElementById('btn-diag');
+    if (n >= 1) {
+      btn.classList.add('activo');
+      btn.textContent = '🔍 Ver mi diagnóstico (' + n + ' señales)';
+    } else {
+      btn.classList.remove('activo');
+      btn.textContent = '🔍 Ver mi diagnóstico';
+    }
+  }
+
+  function verResultado() {
+    const n = marcados.filter(Boolean).length;
+    let nivel, emoji, badge, msg, ctaTitulo, ctaSub;
+
+    if (n <= 3) {
+      nivel = 'nivel-verde';
+      emoji = '🟢';
+      badge = '✨ Alerta temprana';
+      msg = `Que hayas marcado <strong>${n} señales</strong> me dice algo importante: tu negocio todavía no está en zona crítica. Eso es bueno. 🙌<br><br>Pero te voy a ser directo — estas señales no desaparecen solas. Los negocios que las atienden <em>antes de que se vuelvan urgentes</em> son los que crecen con consistencia.<br><br>Este es el mejor momento para estructurarte. No cuando ya estés en el caos.`;
+      ctaTitulo = 'Prevénlo antes de que crezca. 🌱';
+      ctaSub = 'ESTRUCTURA COMERCIAL™ Starter te da el sistema en 5 días. Hoy siempre es mejor que después.';
+    } else if (n <= 6) {
+      nivel = 'nivel-naranja';
+      emoji = '🟠';
+      badge = '⚡ Atención urgente';
+      msg = `Marcaste <strong>${n} señales</strong>. Y quiero que sepas algo: <em>esto no es mala suerte ni falta de talento</em>. 💛<br><br>Lo que tienes es un negocio con potencial real que aún no tiene un sistema que lo soporte. Y eso se nota: en la irregularidad, en el esfuerzo que no se refleja, en los prospectos que se pierden sin que sepas por qué.<br><br>La buena noticia es que con estructura, la mitad de lo que marcaste desaparece en las <strong>primeras dos semanas</strong>. No es magia — es proceso.`;
+      ctaTitulo = 'Ya sabes lo que está fallando. 💡\nEs momento de arreglarlo.';
+      ctaSub = 'ESTRUCTURA COMERCIAL™ Starter trabaja exactamente lo que acabas de identificar. 5 días, 20 minutos al día.';
+    } else {
+      nivel = 'nivel-rojo';
+      emoji = '🔴';
+      badge = '🚨 Acción inmediata';
+      msg = `Marcaste <strong>${n} señales</strong>. Y quiero que lo leas con calma: <em>esto no es tu culpa</em>. ❤️<br><br>Nadie te enseñó a construir un sistema comercial. Aprendiste a vender como pudiste, con lo que tenías. Y aun así, aquí estás — buscando mejorar. Eso dice mucho de ti.<br><br>Lo que pasa es claro: tu negocio tiene demanda y valor, pero <strong>no tiene estructura</strong>. Sin estructura, los resultados siempre son un accidente. Eso se termina hoy si tú decides.`;
+      ctaTitulo = 'Tu negocio tiene potencial.\nSolo le falta estructura.';
+      ctaSub = 'ESTRUCTURA COMERCIAL™ Starter fue construido exactamente para esta situación. Empieza esta semana.';
+    }
+
+    const card = document.getElementById('punt-card');
+    card.className = 'punt-card ' + nivel;
+    document.getElementById('punt-emoji').textContent = emoji;
+    document.getElementById('punt-num').textContent = n;
+    document.getElementById('punt-badge').textContent = badge;
+    document.getElementById('msg-texto').innerHTML = msg;
+    document.getElementById('cta-titulo').textContent = ctaTitulo;
+    document.getElementById('cta-sub').textContent = ctaSub;
+
+    const lista = document.getElementById('marcadas-lista');
+    lista.innerHTML = '';
+    resumen.forEach((t, i) => {
+      if (marcados[i]) {
+        lista.innerHTML += `<div class="marcada-item"><div class="marcada-dot"></div><span class="marcada-texto">${t}</span></div>`;
+      }
+    });
+
+    const msg_wa = encodeURIComponent(`Hola Uriel 👋 Hice el checklist y marqué ${n} de 10 señales. Quiero saber cómo estructurar mis ventas.`);
+    document.getElementById('cta-link').href = `https://wa.me/525520654337?text=${msg_wa}`;
+
+    document.getElementById('resultado').classList.add('visible');
+    setTimeout(() => {
+      document.getElementById('resultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+
+  function reiniciar() {
+    marcados.fill(false);
+    document.querySelectorAll('.item').forEach(el => el.classList.remove('marcado'));
+    document.getElementById('resultado').classList.remove('visible');
+    document.getElementById('prog-fill').style.width = '0%';
+    document.getElementById('prog-count').textContent = '0 de 10 marcadas';
+    const btn = document.getElementById('btn-diag');
+    btn.classList.remove('activo');
+    btn.textContent = '🔍 Ver mi diagnóstico';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
